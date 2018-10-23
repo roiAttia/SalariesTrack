@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- SALARIES LIST ACTIVITY -->
+    <string name="app_name">SalariesTrack</string>
+    <string name="salary">Salary:</string>
+    <string name="payment_date">Payment date:</string>
+    <string name="work_date">Work date:</string>
+
+    <string name="not_paid_salaries">Not Paid Salaries</string>
+    <string name="no_contract_salaries">No Contract Salaries</string>
+    <string name="no_receipt_salaries">No Receipt Salaries</string>
+    <string name="all_salaries">All Salaries</string>
+
+    <string-array name="sort_selection_options">
+        <item>@string/not_paid_salaries</item>
+        <item>@string/no_contract_salaries</item>
+        <item>@string/no_receipt_salaries</item>
+        <item>@string/all_salaries</item>
+    </string-array>
+
+    <!-- SALARY ACTIVITY -->
+    <string name="update_salary_title">Update Salary</string>
+    <string name="new_salary_title">New Salary</string>
+    <string name="worker_name_hint">Worker name</string>
+    <string name="salary_hint">Salary</string>
+    <string name="work_date_hint">Work date</string>
+    <string name="due_payment_date_hint">Due payment date</string>
+    <string name="payment_date_hint">Payment date</string>
+    <string name="work_place_hint">Work place</string>
+    <string name="work_description_hint">Work description</string>
+    <string name="salary_saved">New salary saved!</string>
+    // SWITCHES
+    <string name="no_receipt_switch">No Receipt</string>
+    <string name="not_paid_switch">Salary Not Paid</string>
+    <string name="no_contract_switch">No Contract</string>
+    <string name="salary_paid_switch">Salary Paid</string>
+    <string name="contract_approved_switch">Contract Approved</string>
+    <string name="receipt_switch">Receipt Approved</string>
+    <string name="sort_selection_title">Sort Salaries By</string>
+    // DELETE SALARY DIALOG
+    <string name="delete_salary_title">Delete Salary?</string>
+    <string name="yes">Confirm</string>
+    <string name="no">Cancel</string>
+
+    <!-- WIDGET -->
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title">Salaries to pay this month:</string>
+
+
+</resources>
