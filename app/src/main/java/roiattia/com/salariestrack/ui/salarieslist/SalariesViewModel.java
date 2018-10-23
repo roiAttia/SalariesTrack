@@ -48,28 +48,43 @@ public class SalariesViewModel extends AndroidViewModel {
         return mMutableLiveDataSalaries;
     }
 
-    public void loadSalariesBySort(final int whichSelected) {
+    public void getSalariesItemsNotPaid() {
         mExecutors.diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                List<SalaryListItem> salaries = new ArrayList<>();
-                switch (whichSelected){
-                    case 0: // not paid
-                        salaries = mRepository.getSalariesItemsNotPaid();
-                        break;
-                    case 1: // no contract
-                        salaries = mRepository.getSalariesItemsNoContract();
-                        break;
-                    case 2: // no receipt
-                        salaries = mRepository.getSalariesItemsNoReceipt();
-                        break;
-                    case 3: // all salaries
-                        salaries = mRepository.getSalariesItems();
-                        break;
-                }
+                List<SalaryListItem> salaries = mRepository.getSalariesItemsNotPaid();
                 mMutableLiveDataSalaries.postValue(salaries);
             }
         });
+    }
 
+    public void getSalariesItemsNoContract() {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<SalaryListItem> salaries = mRepository.getSalariesItemsNoContract();
+                mMutableLiveDataSalaries.postValue(salaries);
+            }
+        });
+    }
+
+    public void getSalariesItemsNoReceipt() {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<SalaryListItem> salaries = mRepository.getSalariesItemsNoReceipt();
+                mMutableLiveDataSalaries.postValue(salaries);
+            }
+        });
+    }
+
+    public void getSalariesItems() {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                List<SalaryListItem> salaries = mRepository.getSalariesItems();
+                mMutableLiveDataSalaries.postValue(salaries);
+            }
+        });
     }
 }

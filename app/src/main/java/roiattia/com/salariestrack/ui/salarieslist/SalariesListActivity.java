@@ -94,7 +94,6 @@ public class SalariesListActivity extends AppCompatActivity
                 }
             }
         });
-        mViewModel.loadSalariesBySort(mSortOption);
     }
 
     @Override
@@ -124,12 +123,29 @@ public class SalariesListActivity extends AppCompatActivity
     public void onDialogFinishClick(int whichSelected) {
         mSortOption = whichSelected;
         mSortTitle.setText(getResources().getStringArray(R.array.sort_selection_options)[whichSelected]);
-        mViewModel.loadSalariesBySort(mSortOption);
+        loadDataByCategory();
+    }
+
+    private void loadDataByCategory() {
+        switch (mSortOption){
+            case 0: // not paid
+                mViewModel.getSalariesItemsNotPaid();
+                break;
+            case 1: // no contract
+                mViewModel.getSalariesItemsNoContract();
+                break;
+            case 2: // no receipt
+                mViewModel.getSalariesItemsNoReceipt();
+                break;
+            case 3: // all salaries
+                mViewModel.getSalariesItems();
+                break;
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mViewModel.loadSalariesBySort(mSortOption);
+        loadDataByCategory();
     }
 }
