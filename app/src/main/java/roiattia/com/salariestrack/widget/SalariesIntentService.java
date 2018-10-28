@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 
 import org.joda.time.LocalDate;
 
-import roiattia.com.salariestrack.database.AppDatabase;
 import roiattia.com.salariestrack.database.AppExecutors;
 import roiattia.com.salariestrack.model.SalariesSum;
 import roiattia.com.salariestrack.repositories.SalariesRepository;

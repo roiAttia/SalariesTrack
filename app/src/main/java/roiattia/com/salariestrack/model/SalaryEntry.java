@@ -63,9 +63,7 @@ public class SalaryEntry {
     }
 
     @Ignore
-    public SalaryEntry() {
-
-    }
+    public SalaryEntry() { }
 
     public long getSalaryId() {
         return mSalaryId;

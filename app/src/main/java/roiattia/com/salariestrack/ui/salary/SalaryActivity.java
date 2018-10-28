@@ -5,14 +5,15 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -44,9 +45,9 @@ public class SalaryActivity extends AppCompatActivity {
     private boolean mIsConfirmed, mIsNewSalary;
     private SalaryEntry mSalaryEntry;
 
-    @BindView(R.id.sw_is_paid) Switch mIsPaidSwitch;
-    @BindView(R.id.sw_has_receipt) Switch mHasReceiptSwitch;
-    @BindView(R.id.sw_has_contract) Switch mHasContractSwitch;
+    @BindView(R.id.cb_contract) CheckBox mHasContractCheckbox;
+    @BindView(R.id.cb_pay) CheckBox mIsPaidCheckbox;
+    @BindView(R.id.cb_receipt) CheckBox mHasReceiptCheckbox;
     @BindView(R.id.iet_name) TextInputEditText mNameInput;
     @BindView(R.id.iet_salary) TextInputEditText mSalaryInput;
     @BindView(R.id.iet_work_date) TextInputEditText mWorkDateInput;
@@ -57,6 +58,7 @@ public class SalaryActivity extends AppCompatActivity {
     @BindView(R.id.iv_salary_error) ImageView mSalaryError;
     @BindView(R.id.iv_payment_date_error) ImageView mPaymentDateError;
     @BindView(R.id.tv_error_message) TextView mErrorText;
+    @BindView(R.id.layout) ConstraintLayout mLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,19 +76,31 @@ public class SalaryActivity extends AppCompatActivity {
         setupUI();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mLayout.requestFocus();
+    }
+
+    /**
+     * Check intent for salary id and set title accordingly
+     */
     private void checkIntent(){
         long salaryId = getIntent().getLongExtra(SALARY_ID_EXTRA, SALARY_DEFAULT_ID);
-        if(salaryId != SALARY_DEFAULT_ID){
+        if(salaryId != SALARY_DEFAULT_ID){ // Set update salary configuration
             setTitle(getString(R.string.update_salary_title));
             mViewModel.getSalaryById(salaryId);
             updateSwitches(View.VISIBLE);
-        } else {
+        } else { // Set new salary configuration
             mIsNewSalary = true;
             setTitle(getString(R.string.new_salary_title));
             updateSwitches(View.GONE);
         }
     }
 
+    /**
+     * Setup activity's UI elements with listeners
+     */
     private void setupUI() {
         mWorkDateInput.setFocusable(false);
         mWorkDateInput.setOnClickListener(new View.OnClickListener() {
@@ -103,50 +117,56 @@ public class SalaryActivity extends AppCompatActivity {
             }
         });
 
-        mIsPaidSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mIsPaidCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setPaid(isChecked);
                 if(isChecked){
-                    mIsPaidSwitch.setText(getString(R.string.salary_paid_switch));
+                    mIsPaidCheckbox.setText(getString(R.string.salary_paid_switch));
                 } else {
-                    mIsPaidSwitch.setText(getString(R.string.not_paid_switch));
+                    mIsPaidCheckbox.setText(getString(R.string.not_paid_switch));
                 }
             }
         });
 
-        mHasContractSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mHasContractCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setGotContract(isChecked);
                 if(isChecked){
-                    mHasContractSwitch.setText(getString(R.string.contract_approved_switch));
+                    mHasContractCheckbox.setText(getString(R.string.contract_approved_switch));
                 } else {
-                    mHasContractSwitch.setText(getString(R.string.no_contract_switch));
+                    mHasContractCheckbox.setText(getString(R.string.no_contract_switch));
                 }
             }
         });
 
-        mHasReceiptSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mHasReceiptCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setGotReceipt(isChecked);
                 if(isChecked){
-                    mHasReceiptSwitch.setText(getString(R.string.receipt_switch));
+                    mHasReceiptCheckbox.setText(getString(R.string.receipt_switch));
                 } else {
-                    mHasReceiptSwitch.setText(getString(R.string.no_receipt_switch));
+                    mHasReceiptCheckbox.setText(getString(R.string.no_receipt_switch));
                 }
             }
         });
     }
 
-
+    /**
+     * Set switches visibility
+     * @param visible visibility's setup option
+     */
     private void updateSwitches(int visible) {
-        mIsPaidSwitch.setVisibility(visible);
-        mHasContractSwitch.setVisibility(visible);
-        mHasReceiptSwitch.setVisibility(visible);
+        mIsPaidCheckbox.setVisibility(visible);
+        mIsPaidCheckbox.setVisibility(visible);
+        mHasReceiptCheckbox.setVisibility(visible);
     }
 
+    /**
+     * Setup view model and set it's observe method
+     */
     private void setupViewModel() {
         mViewModel = ViewModelProviders.of(this).get(SalaryViewModel.class);
         mViewModel.getMutableLiveDataSalary().observe(this, new Observer<SalaryEntry>() {
@@ -160,10 +180,13 @@ public class SalaryActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Update UI with salary's data
+     */
     private void updateUI() {
-        mIsPaidSwitch.setChecked(mSalaryEntry.isPaid());
-        mHasReceiptSwitch.setChecked(mSalaryEntry.isGotReceipt());
-        mHasContractSwitch.setChecked(mSalaryEntry.isGotContract());
+        mIsPaidCheckbox.setChecked(mSalaryEntry.isPaid());
+        mHasReceiptCheckbox.setChecked(mSalaryEntry.isGotReceipt());
+        mHasContractCheckbox.setChecked(mSalaryEntry.isGotContract());
         mNameInput.setText(mSalaryEntry.getWorkerName());
         mSalaryInput.setText(TextFormat.getStringFormatFromDouble(mSalaryEntry.getSalary()));
         mWorkDateInput.setText(TextFormat.getDateStringFormat(mSalaryEntry.getWorkDate()));
@@ -172,6 +195,10 @@ public class SalaryActivity extends AppCompatActivity {
         mWorkDescriptionInput.setText(mSalaryEntry.getWorkDescription());
     }
 
+    /**
+     * Set pick date dialog
+     * @param paymentType the type of date to save
+     */
     private void pickDate(final String paymentType) {
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
@@ -217,6 +244,9 @@ public class SalaryActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Show delete salary alert dialog
+     */
     private void showAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         // set title
@@ -241,13 +271,21 @@ public class SalaryActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    /**
+     * Delete salary operation
+     */
     private void deleteSalary() {
         mViewModel.deleteSalary(mSalaryEntry);
         SalariesIntentService.startActionProvideReport(this);
+        Toast.makeText(this, R.string.salary_deleted, Toast.LENGTH_SHORT).show();
         finish();
     }
 
+    /**
+     * Confirm salary click event - check for input validation and set data to mSalaryEntry
+     */
     private void confirmSalary() {
+        mIsConfirmed = true;
         if(mNameInput.getText().toString().trim().length() <= 0){
             setError(mNameError,false);
         } else {
@@ -258,7 +296,8 @@ public class SalaryActivity extends AppCompatActivity {
             setError(mSalaryError,false);
         } else {
             try{
-                mSalaryEntry.setSalary(Double.parseDouble(mSalaryInput.getText().toString()));
+                mSalaryEntry.setSalary(Double.parseDouble(mSalaryInput.getText().toString()
+                        .replaceAll(",","")));
                 setError(mSalaryError,true);
             } catch (Exception exception){
                 setError(mSalaryError,false);;
@@ -272,7 +311,12 @@ public class SalaryActivity extends AppCompatActivity {
         mSalaryEntry.setWorkPlace(mWorkPlaceInput.getText().toString().trim());
         mSalaryEntry.setWorkDescription(mWorkDescriptionInput.getText().toString().trim());
         if(mIsConfirmed){
-            Toast.makeText(this, R.string.salary_saved, Toast.LENGTH_SHORT).show();
+            if(mIsNewSalary) {
+                Toast.makeText(this, R.string.salary_saved, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.salary_updated, Toast.LENGTH_SHORT).show();
+
+            }
             mErrorText.setVisibility(View.INVISIBLE);
             mViewModel.insertSalary(mSalaryEntry);
             SalariesIntentService.startActionProvideReport(this);
@@ -282,13 +326,23 @@ public class SalaryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set error message visibility
+     * @param nameError input field error image view
+     * @param isValid if input is valid
+     */
     private void setError(ImageView nameError, boolean isValid){
         if(isValid){
             nameError.setVisibility(View.INVISIBLE);
         } else {
             nameError.setVisibility(View.VISIBLE);
+            mIsConfirmed = false;
         }
-        mIsConfirmed = isValid;
     }
+
+    //TODO 2: set salary quick pay button
+    //TODO 3: edit widget
+    //TODO 4: set salary background color - only for today and passed
+    //TODO 5: renew switches
 
 }

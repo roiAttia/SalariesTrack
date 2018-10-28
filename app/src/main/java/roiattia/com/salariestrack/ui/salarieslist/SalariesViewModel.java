@@ -5,7 +5,6 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import roiattia.com.salariestrack.repositories.SalariesRepository;
@@ -15,22 +14,16 @@ import roiattia.com.salariestrack.model.SalaryListItem;
 
 public class SalariesViewModel extends AndroidViewModel {
 
-    SalariesRepository mRepository;
-//    LiveData<List<SalaryListItem>> mSalaries;
-    AppExecutors mExecutors;
+    private SalariesRepository mRepository;
+    private AppExecutors mExecutors;
     private MutableLiveData<List<SalaryListItem>> mMutableLiveDataSalaries;
 
     public SalariesViewModel(@NonNull Application application) {
         super(application);
         mRepository = SalariesRepository.getInstance(application.getApplicationContext());
         mExecutors = AppExecutors.getInstance();
-//        mSalaries = mRepository.getSalaries();
         mMutableLiveDataSalaries = new MutableLiveData<>();
     }
-
-//    public LiveData<List<SalaryListItem>> getSalaries() {
-//        return mSalaries;
-//    }
 
     public void deleteAllSalaries(){
         mRepository.deleteAllSalaries();

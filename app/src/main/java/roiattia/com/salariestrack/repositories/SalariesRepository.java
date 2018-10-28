@@ -37,10 +37,6 @@ public class SalariesRepository {
         return sInstance;
     }
 
-    public LiveData<List<SalaryListItem>> getSalaries() {
-        return mDb.salaryDao().getSalaryItems();
-    }
-
     public void deleteAllSalaries(){
         mExecutors.diskIO().execute(new Runnable() {
             @Override

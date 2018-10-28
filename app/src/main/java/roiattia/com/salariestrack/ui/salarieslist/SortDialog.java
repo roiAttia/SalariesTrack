@@ -49,7 +49,7 @@ public class SortDialog extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            // Instantiate the SortDialogListener so we can send events to the host
+            // Instantiate the SortDialogListener to send events to the host
             mListener = (SortDialogListener) context;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception

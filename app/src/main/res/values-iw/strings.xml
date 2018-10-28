@@ -24,7 +24,6 @@
     <string name="worker_name_hint">שכר עובד/ת</string>
     <string name="salary_hint">משכורת</string>
     <string name="work_date_hint">תאריך עבודה</string>
-    <string name="due_payment_date_hint">שוטף פלוס</string>
     <string name="payment_date_hint">תאריך תשלום</string>
     <string name="work_place_hint">מקום העבודה</string>
     <string name="work_description_hint">פירוט העבודה</string>
@@ -44,6 +43,13 @@
 
     <!-- WIDGET -->
     <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
     <string name="title">משכורות לשלם החודש:</string>
+    <string name="missing_value_error">missing value</string>
+    <string name="must_fill_marked_fields_error">* חובה למלא שדות מסומנים</string>
+
+    <!-- MENU ITEMS -->
+    <string name="delete">מחיקה</string>
+    <string name="confirm">אישור</string>
+    <string name="sort">הצג</string>
+    <string name="debug_print">Debug Print</string>
 </resources>

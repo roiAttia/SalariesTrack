@@ -23,12 +23,13 @@
     <string name="new_salary_title">New Salary</string>
     <string name="worker_name_hint">Worker name</string>
     <string name="salary_hint">Salary</string>
-    <string name="work_date_hint">Work date</string>
-    <string name="due_payment_date_hint">Due payment date</string>
+    <string name="work_date_hint">Work date (Optional)</string>
     <string name="payment_date_hint">Payment date</string>
-    <string name="work_place_hint">Work place</string>
-    <string name="work_description_hint">Work description</string>
+    <string name="work_place_hint">Work place (Optional)</string>
+    <string name="work_description_hint">Work description (Optional)</string>
     <string name="salary_saved">New salary saved!</string>
+    <string name="salary_updated">Salary updated!</string>
+    <string name="salary_deleted">Salary Deleted!</string>
     // SWITCHES
     <string name="no_receipt_switch">No Receipt</string>
     <string name="not_paid_switch">Salary Not Paid</string>
@@ -44,8 +45,13 @@
 
     <!-- WIDGET -->
     <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
     <string name="title">Salaries to pay this month:</string>
+    <string name="missing_value_error">missing value</string>
+    <string name="must_fill_marked_fields_error">* Must fill marked fields</string>
+    <string name="delete">Delete</string>
+    <string name="confirm">Confirm</string>
+    <string name="sort">Sort</string>
+    <string name="debug_print">Debug Print</string>
 
 
 </resources>
