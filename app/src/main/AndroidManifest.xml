@@ -37,15 +37,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
-        <service
-            android:name=".sync.SalariesFirebaseJobService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
-            </intent-filter>
-        </service>
-        <service android:name=".sync.StartReminderService" />
-
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package roiattia.com.salariestrack.repositories;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.util.Log;
 
@@ -20,8 +19,8 @@ public class SalariesRepository {
     // For Singleton instantiation
     private static final Object LOCK = new Object();
     private static SalariesRepository sInstance;
-    private AppDatabase mDb;
-    private AppExecutors mExecutors;
+    private final AppDatabase mDb;
+    private final AppExecutors mExecutors;
 
     private SalariesRepository(Context context){
         mDb = AppDatabase.getsInstance(context);

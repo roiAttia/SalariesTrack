@@ -12,11 +12,11 @@ import roiattia.com.salariestrack.database.AppExecutors;
 import roiattia.com.salariestrack.model.SalaryEntry;
 import roiattia.com.salariestrack.model.SalaryListItem;
 
-public class SalariesViewModel extends AndroidViewModel {
+class SalariesViewModel extends AndroidViewModel {
 
-    private SalariesRepository mRepository;
-    private AppExecutors mExecutors;
-    private MutableLiveData<List<SalaryListItem>> mMutableLiveDataSalaries;
+    private final SalariesRepository mRepository;
+    private final AppExecutors mExecutors;
+    private final MutableLiveData<List<SalaryListItem>> mMutableLiveDataSalaries;
 
     public SalariesViewModel(@NonNull Application application) {
         super(application);

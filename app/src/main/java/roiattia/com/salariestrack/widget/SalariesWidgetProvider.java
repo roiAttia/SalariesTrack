@@ -17,14 +17,13 @@ import roiattia.com.salariestrack.utils.TextFormat;
  */
 public class SalariesWidgetProvider extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                SalariesSum salariesSum, int appWidgetId) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        SalariesSum salariesSum, int appWidgetId) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.salaries_widget_provider);
         views.setTextViewText(R.id.appwidget_text, context.getString(R.string.title) +
                 TextFormat.getStringFormatFromDouble(salariesSum.getSum()));
-        views.setImageViewResource(R.id.appwidget_image, R.drawable.coins_30_green);
 
         Intent intent = new Intent(context, SalariesListActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);

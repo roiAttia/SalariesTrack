@@ -1,49 +1,31 @@
 package roiattia.com.salariestrack.ui.salarieslist;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-import org.joda.time.DateTimeZone;
-import org.joda.time.Hours;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-
-import java.util.Calendar;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import roiattia.com.salariestrack.R;
 import roiattia.com.salariestrack.model.SalaryListItem;
-import roiattia.com.salariestrack.sync.ReminderUtils;
-import roiattia.com.salariestrack.sync.SalariesFirebaseJobService;
-import roiattia.com.salariestrack.sync.StartReminderService;
 import roiattia.com.salariestrack.ui.salary.SalaryActivity;
-import roiattia.com.salariestrack.utils.DummyData;
-import roiattia.com.salariestrack.utils.NotificationUtils;
+import roiattia.com.salariestrack.utils.Analytics;
 
 import static roiattia.com.salariestrack.utils.Constants.SALARY_ID_EXTRA;
 
@@ -75,33 +57,13 @@ public class SalariesListActivity extends AppCompatActivity
         setContentView(R.layout.activity_salaries_list);
         ButterKnife.bind(this);
 
-//        ReminderUtils.scheduleSalariesReminder(this);
-
         mSortOption = 0;
-
-        setupAlarm();
 
 //        setupAd();
 
         setupRecyclerView();
 
         setupViewHolder();
-    }
-
-    private void setupAlarm() {
-        AlarmManager alarmMgr = (AlarmManager)getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(this, StartReminderService.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 7);
-//        calendar.set(Calendar.MINUTE, 0);
-
-        if (alarmMgr != null) {
-            alarmMgr.set(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(), alarmIntent);
-        }
     }
 
     private void setupAd() {
@@ -188,6 +150,7 @@ public class SalariesListActivity extends AppCompatActivity
     public void onDialogFinishClick(int whichSelected) {
         mSortOption = whichSelected;
         mSortTitle.setText(getResources().getStringArray(R.array.sort_selection_options)[whichSelected]);
+        Analytics.logEventSortClick(this, mSortOption);
         loadDataByCategory();
     }
 

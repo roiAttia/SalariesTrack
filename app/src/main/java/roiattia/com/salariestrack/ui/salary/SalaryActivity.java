@@ -17,7 +17,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -122,9 +121,9 @@ public class SalaryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setPaid(isChecked);
                 if(isChecked){
-                    mIsPaidCheckbox.setText(getString(R.string.salary_paid_switch));
+                    mIsPaidCheckbox.setText(getString(R.string.salary_paid_cb));
                 } else {
-                    mIsPaidCheckbox.setText(getString(R.string.not_paid_switch));
+                    mIsPaidCheckbox.setText(getString(R.string.not_paid_cb));
                 }
             }
         });
@@ -134,9 +133,9 @@ public class SalaryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setGotContract(isChecked);
                 if(isChecked){
-                    mHasContractCheckbox.setText(getString(R.string.contract_approved_switch));
+                    mHasContractCheckbox.setText(getString(R.string.contract_approved_cb));
                 } else {
-                    mHasContractCheckbox.setText(getString(R.string.no_contract_switch));
+                    mHasContractCheckbox.setText(getString(R.string.no_contract_cb));
                 }
             }
         });
@@ -146,9 +145,9 @@ public class SalaryActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mSalaryEntry.setGotReceipt(isChecked);
                 if(isChecked){
-                    mHasReceiptCheckbox.setText(getString(R.string.receipt_switch));
+                    mHasReceiptCheckbox.setText(getString(R.string.receipt_cb));
                 } else {
-                    mHasReceiptCheckbox.setText(getString(R.string.no_receipt_switch));
+                    mHasReceiptCheckbox.setText(getString(R.string.no_receipt_cb));
                 }
             }
         });
@@ -300,7 +299,7 @@ public class SalaryActivity extends AppCompatActivity {
                         .replaceAll(",","")));
                 setError(mSalaryError,true);
             } catch (Exception exception){
-                setError(mSalaryError,false);;
+                setError(mSalaryError,false);
             }
         }
         if(mPaymentDateInput.getText().toString().trim().length() <= 0){
@@ -339,10 +338,4 @@ public class SalaryActivity extends AppCompatActivity {
             mIsConfirmed = false;
         }
     }
-
-    //TODO 2: set salary quick pay button
-    //TODO 3: edit widget
-    //TODO 4: set salary background color - only for today and passed
-    //TODO 5: renew switches
-
 }

@@ -2,10 +2,9 @@
 
     <!-- SALARIES LIST ACTIVITY -->
     <string name="app_name">SalariesTrack</string>
-    <string name="salary">Salary:</string>
     <string name="payment_date">Payment date:</string>
-    <string name="work_date">Work date:</string>
 
+    <string name="sort_selection_title">Sort Salaries By</string>
     <string name="not_paid_salaries">Not Paid Salaries</string>
     <string name="no_contract_salaries">No Contract Salaries</string>
     <string name="no_receipt_salaries">No Receipt Salaries</string>
@@ -30,14 +29,13 @@
     <string name="salary_saved">New salary saved!</string>
     <string name="salary_updated">Salary updated!</string>
     <string name="salary_deleted">Salary Deleted!</string>
-    // SWITCHES
-    <string name="no_receipt_switch">No Receipt</string>
-    <string name="not_paid_switch">Salary Not Paid</string>
-    <string name="no_contract_switch">No Contract</string>
-    <string name="salary_paid_switch">Salary Paid</string>
-    <string name="contract_approved_switch">Contract Approved</string>
-    <string name="receipt_switch">Receipt Approved</string>
-    <string name="sort_selection_title">Sort Salaries By</string>
+    // CHECK BOXES
+    <string name="no_receipt_cb">No Receipt</string>
+    <string name="not_paid_cb">Salary Not Paid</string>
+    <string name="no_contract_cb">No Contract</string>
+    <string name="salary_paid_cb">Salary Paid</string>
+    <string name="contract_approved_cb">Contract Approved</string>
+    <string name="receipt_cb">Receipt Approved</string>
     // DELETE SALARY DIALOG
     <string name="delete_salary_title">Delete Salary?</string>
     <string name="yes">Confirm</string>
@@ -52,6 +50,10 @@
     <string name="confirm">Confirm</string>
     <string name="sort">Sort</string>
     <string name="debug_print">Debug Print</string>
+    <string name="no_salaries_to_display">No salaries to display…</string>
+    <string name="salary_information_title">Salary Information</string>
+    <string name="work_information_title">Work Information</string>
+    <string name="new_salary_menu_item">New Salary</string>
 
 
 </resources>

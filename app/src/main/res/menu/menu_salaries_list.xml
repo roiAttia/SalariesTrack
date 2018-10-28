@@ -5,7 +5,7 @@
     <item
         android:id="@+id/mi_new_salary"
         android:icon="@drawable/ic_add_white_24dp"
-        android:title="New Salary"
+        android:title="@string/new_salary_menu_item"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mi_sort"

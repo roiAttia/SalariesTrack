@@ -4,7 +4,7 @@ import android.arch.persistence.room.TypeConverter;
 
 import org.joda.time.LocalDate;
 
-public class DateTypeConverter {
+class DateTypeConverter {
 
     @TypeConverter
     public static LocalDate toLocalDate(Long timeStamp){

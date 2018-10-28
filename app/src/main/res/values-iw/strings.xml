@@ -2,10 +2,10 @@
 <resources>
 
     <!-- SALARIES LIST ACTIVITY -->
-    <string name="salary">משכורת:</string>
     <string name="payment_date">תאריך תשלום:</string>
-    <string name="work_date">תאריך עבודה:</string>
+    <string name="no_salaries_to_display">אין משכורות להציג…</string>
 
+    <string name="sort_selection_title">הצג משכורות לפי:</string>
     <string name="not_paid_salaries">משכורות שלא שולמו</string>
     <string name="no_contract_salaries">משכורות ללא חוזה</string>
     <string name="no_receipt_salaries">משכורות ללא קבלה</string>
@@ -19,23 +19,27 @@
     </string-array>
 
     <!-- SALARY ACTIVITY -->
+
+    <string name="salary_information_title">פירוט משכורת</string>
+    <string name="work_information_title">פירוט עבודה</string>
     <string name="update_salary_title">עדכון משכורת</string>
     <string name="new_salary_title">משכורת חדשה</string>
     <string name="worker_name_hint">שכר עובד/ת</string>
     <string name="salary_hint">משכורת</string>
-    <string name="work_date_hint">תאריך עבודה</string>
+    <string name="work_date_hint">תאריך עבודה (אופציונלי)</string>
     <string name="payment_date_hint">תאריך תשלום</string>
-    <string name="work_place_hint">מקום העבודה</string>
-    <string name="work_description_hint">פירוט העבודה</string>
+    <string name="work_place_hint">מקום העבודה (אופציונלי)</string>
+    <string name="work_description_hint">פירוט העבודה (אופציונלי)</string>
     <string name="salary_saved">משכרות חדשה נשמרה!</string>
-    <string name="sort_selection_title">הצג משכורות לפי:</string>
-    // SWITCHES
-    <string name="no_receipt_switch">אין קבלה</string>
-    <string name="not_paid_switch">משכורת לא שולמה</string>
-    <string name="no_contract_switch">אין חוזה</string>
-    <string name="salary_paid_switch">משכורת שולמה</string>
-    <string name="contract_approved_switch">חוזה אושר</string>
-    <string name="receipt_switch">קבלה אושרה</string>
+    <string name="salary_updated">משכורת עודכנה!</string>
+    <string name="salary_deleted">משכורת נמחקה!</string>
+    // CHECK BOXES
+    <string name="no_receipt_cb">אין קבלה</string>
+    <string name="not_paid_cb">משכורת לא שולמה</string>
+    <string name="no_contract_cb">אין חוזה</string>
+    <string name="salary_paid_cb">משכורת שולמה</string>
+    <string name="contract_approved_cb">חוזה אושר</string>
+    <string name="receipt_cb">קבלה אושרה</string>
     // DELETE SALARY DIALOG
     <string name="delete_salary_title">מחיקת משכורת</string>
     <string name="yes">אישור</string>
@@ -51,5 +55,7 @@
     <string name="delete">מחיקה</string>
     <string name="confirm">אישור</string>
     <string name="sort">הצג</string>
+    <string name="new_salary_menu_item">משכורת חדשה</string>
     <string name="debug_print">Debug Print</string>
+
 </resources>

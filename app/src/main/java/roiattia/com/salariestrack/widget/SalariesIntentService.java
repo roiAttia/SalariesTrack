@@ -15,10 +15,10 @@ import roiattia.com.salariestrack.repositories.SalariesRepository;
 
 public class SalariesIntentService extends IntentService {
 
-    public static final String ACTION_GET_REPORT =
+    private static final String ACTION_GET_REPORT =
             "roiattia.com.salariestrack.action.get_report";
-    private AppExecutors mExecutors;
-    private SalariesRepository mRepository;
+    private final AppExecutors mExecutors;
+    private final SalariesRepository mRepository;
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      */
