@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/worker_name_hint"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/salary_hint"
                 android:inputType="number"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/work_date_hint"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/payment_date_hint"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/work_place_hint"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/work_description_hint"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_text_size" />
         </android.support.design.widget.TextInputLayout>
 
         <ImageView
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/error_iv_margin"
-            android:src="@drawable/ic_must_fill_red_24dp"
+            app:srcCompat="@drawable/ic_must_fill_red_24dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
             app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
@@ -136,7 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/error_iv_margin"
-            android:src="@drawable/ic_must_fill_red_24dp"
+            app:srcCompat="@drawable/ic_must_fill_red_24dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
             app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
@@ -148,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/error_iv_margin"
-            android:src="@drawable/ic_must_fill_red_24dp"
+            app:srcCompat="@drawable/ic_must_fill_red_24dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textInputLayout7"
             app:layout_constraintEnd_toStartOf="@+id/textInputLayout7"
@@ -198,7 +198,7 @@
         <View
             android:id="@+id/divider4"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height_normal"
             android:layout_marginTop="@dimen/divider_top_margin"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
@@ -208,7 +208,7 @@
         <View
             android:id="@+id/divider5"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/divider_height_normal"
             android:layout_marginTop="@dimen/divider_top_margin"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"

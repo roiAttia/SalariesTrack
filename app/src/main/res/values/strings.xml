@@ -54,6 +54,7 @@
     <string name="salary_information_title">Salary Information</string>
     <string name="work_information_title">Work Information</string>
     <string name="new_salary_menu_item">New Salary</string>
+    <string name="widget_add_new_salary_image_view_button_content_description">widget add new salary image view button</string>
 
 
 </resources>

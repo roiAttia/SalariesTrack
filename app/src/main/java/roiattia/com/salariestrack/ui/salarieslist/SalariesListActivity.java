@@ -21,7 +21,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import roiattia.com.salariestrack.R;
 import roiattia.com.salariestrack.model.SalaryListItem;
 import roiattia.com.salariestrack.ui.salary.SalaryActivity;
@@ -37,19 +36,11 @@ public class SalariesListActivity extends AppCompatActivity
     private SalariesAdapter mAdapter;
     private SalariesViewModel mViewModel;
     private int mSortOption;
+    private SortDialog mSortDialog;
 
     @BindView(R.id.rv_salaries) RecyclerView mSalaries;
     @BindView(R.id.tv_sort_title) TextView mSortTitle;
     @BindView(R.id.tv_no_salaries) TextView mNoSalaries;
-
-    /**
-     * FAB click event - open new salary activity
-     */
-    @OnClick(R.id.fab_new_salary)
-    public void newSalary(){
-        Intent intent = new Intent(SalariesListActivity.this, SalaryActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +48,21 @@ public class SalariesListActivity extends AppCompatActivity
         setContentView(R.layout.activity_salaries_list);
         ButterKnife.bind(this);
 
-        mSortOption = 0;
+        setupSortDialog();
 
-//        setupAd();
+        setupAd();
 
         setupRecyclerView();
 
         setupViewHolder();
+    }
+
+    private void setupSortDialog() {
+        mSortOption = 0;
+        mSortDialog = new SortDialog();
+        final String[] sortOptions = getResources().getStringArray(R.array.sort_selection_options);
+        mSortDialog.setData(sortOptions);
+        mSortDialog.setTitle(getString(R.string.sort_selection_title));
     }
 
     private void setupAd() {
@@ -125,11 +124,7 @@ public class SalariesListActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.mi_sort: // Open sort salaries dialog selection
-                SortDialog sortDialog = new SortDialog();
-                final String[] sortOptions = getResources().getStringArray(R.array.sort_selection_options);
-                sortDialog.setData(sortOptions);
-                sortDialog.setTitle(getString(R.string.sort_selection_title));
-                sortDialog.show(getSupportFragmentManager(), "sort");
+                mSortDialog.show(getSupportFragmentManager(), "sort");
                 break;
             case R.id.mi_debug_print: // log all salaries in db
                 mViewModel.debugPrint();

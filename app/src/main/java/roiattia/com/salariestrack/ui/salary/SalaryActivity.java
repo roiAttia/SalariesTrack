@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputEditText;
@@ -85,15 +86,18 @@ public class SalaryActivity extends AppCompatActivity {
      * Check intent for salary id and set title accordingly
      */
     private void checkIntent(){
-        long salaryId = getIntent().getLongExtra(SALARY_ID_EXTRA, SALARY_DEFAULT_ID);
-        if(salaryId != SALARY_DEFAULT_ID){ // Set update salary configuration
-            setTitle(getString(R.string.update_salary_title));
-            mViewModel.getSalaryById(salaryId);
-            updateSwitches(View.VISIBLE);
-        } else { // Set new salary configuration
-            mIsNewSalary = true;
-            setTitle(getString(R.string.new_salary_title));
-            updateSwitches(View.GONE);
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra(SALARY_ID_EXTRA)) {
+            long salaryId = getIntent().getLongExtra(SALARY_ID_EXTRA, SALARY_DEFAULT_ID);
+            if (salaryId != SALARY_DEFAULT_ID) { // Set update salary configuration
+                setTitle(getString(R.string.update_salary_title));
+                mViewModel.getSalaryById(salaryId);
+                updateSwitches(View.VISIBLE);
+            } else { // Set new salary configuration
+                mIsNewSalary = true;
+                setTitle(getString(R.string.new_salary_title));
+                updateSwitches(View.GONE);
+            }
         }
     }
 
@@ -286,26 +290,30 @@ public class SalaryActivity extends AppCompatActivity {
     private void confirmSalary() {
         mIsConfirmed = true;
         if(mNameInput.getText().toString().trim().length() <= 0){
-            setError(mNameError,false);
+            mIsConfirmed = false;
+            mNameError.setVisibility(View.VISIBLE);
         } else {
             mSalaryEntry.setWorkerName(mNameInput.getText().toString().trim());
-            setError(mNameError,true);
+            mNameError.setVisibility(View.INVISIBLE);
         }
         if(mSalaryInput.getText().toString().trim().length() <= 0){
-            setError(mSalaryError,false);
+            mIsConfirmed = false;
+            mSalaryError.setVisibility(View.VISIBLE);
         } else {
             try{
                 mSalaryEntry.setSalary(Double.parseDouble(mSalaryInput.getText().toString()
                         .replaceAll(",","")));
-                setError(mSalaryError,true);
+                mSalaryError.setVisibility(View.INVISIBLE);
             } catch (Exception exception){
-                setError(mSalaryError,false);
+                mIsConfirmed = false;
+                mSalaryError.setVisibility(View.VISIBLE);
             }
         }
         if(mPaymentDateInput.getText().toString().trim().length() <= 0){
-            setError(mPaymentDateError,false);
+            mIsConfirmed = false;
+            mPaymentDateError.setVisibility(View.VISIBLE);
         } else {
-            setError(mPaymentDateError,true);
+            mPaymentDateError.setVisibility(View.INVISIBLE);
         }
         mSalaryEntry.setWorkPlace(mWorkPlaceInput.getText().toString().trim());
         mSalaryEntry.setWorkDescription(mWorkDescriptionInput.getText().toString().trim());
@@ -322,20 +330,6 @@ public class SalaryActivity extends AppCompatActivity {
             finish();
         } else {
             mErrorText.setVisibility(View.VISIBLE);
-        }
-    }
-
-    /**
-     * Set error message visibility
-     * @param nameError input field error image view
-     * @param isValid if input is valid
-     */
-    private void setError(ImageView nameError, boolean isValid){
-        if(isValid){
-            nameError.setVisibility(View.INVISIBLE);
-        } else {
-            nameError.setVisibility(View.VISIBLE);
-            mIsConfirmed = false;
         }
     }
 }

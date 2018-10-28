@@ -10,6 +10,7 @@ import android.widget.RemoteViews;
 import roiattia.com.salariestrack.R;
 import roiattia.com.salariestrack.model.SalariesSum;
 import roiattia.com.salariestrack.ui.salarieslist.SalariesListActivity;
+import roiattia.com.salariestrack.ui.salary.SalaryActivity;
 import roiattia.com.salariestrack.utils.TextFormat;
 
 /**
@@ -22,12 +23,16 @@ public class SalariesWidgetProvider extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.salaries_widget_provider);
-        views.setTextViewText(R.id.appwidget_text, context.getString(R.string.title) +
+        views.setTextViewText(R.id.tv_summary, context.getString(R.string.title) +
                 TextFormat.getStringFormatFromDouble(salariesSum.getSum()));
 
-        Intent intent = new Intent(context, SalariesListActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
+        Intent salariesListIntent = new Intent(context, SalariesListActivity.class);
+        PendingIntent salariesPendingIntent = PendingIntent.getActivity(context, 0, salariesListIntent, 0);
+        views.setOnClickPendingIntent(R.id.tv_salaries_track, salariesPendingIntent);
+
+        Intent salaryIntent = new Intent(context, SalaryActivity.class);
+        PendingIntent salaryPendingIntent = PendingIntent.getActivity(context, 0, salaryIntent, 0);
+        views.setOnClickPendingIntent(R.id.iv_new_salary, salaryPendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

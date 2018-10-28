@@ -68,7 +68,7 @@ public class SalariesAdapter extends RecyclerView.Adapter<SalariesAdapter.Salary
         @BindView(R.id.tv_name) TextView mName;
         @BindView(R.id.tv_salary) TextView mSalary;
         @BindView(R.id.tv_payment_date) TextView mPaymentDate;
-        @BindView(R.id.tv_currency_sumbol) TextView mCurrencySymbol;
+        @BindView(R.id.tv_currency_symbol) TextView mCurrencySymbol;
 
         SalaryViewHolder(View itemView) {
             super(itemView);

@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -48,7 +49,7 @@ dependencies {
     // Joda time
     implementation 'joda-time:joda-time:2.10'
 
-    // Firebase
+    // FireBase
     implementation 'com.google.firebase:firebase-core:16.0.4'
 }
 apply plugin: 'com.google.gms.google-services'

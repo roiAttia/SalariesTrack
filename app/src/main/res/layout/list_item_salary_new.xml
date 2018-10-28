@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/default_quarter_margin"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
+        android:textSize="@dimen/salary_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tv_payment_date"
-        app:layout_constraintEnd_toStartOf="@+id/tv_currency_sumbol"
+        app:layout_constraintEnd_toStartOf="@+id/tv_currency_symbol"
         app:layout_constraintTop_toTopOf="@+id/tv_name"
         app:layout_constraintVertical_bias="0.521"
         tools:text="1,500" />
@@ -35,7 +35,7 @@
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/divider_height_normal"
         android:layout_marginTop="@dimen/default_quarter_margin"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/tv_payment_date"
@@ -53,7 +53,7 @@
 
     <View
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/divider_height_normal"
         android:layout_marginTop="@dimen/default_margin"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,12 +61,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_payment_date" />
 
     <TextView
-        android:id="@+id/tv_currency_sumbol"
+        android:id="@+id/tv_currency_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/default_margin"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
+        android:textSize="@dimen/currency_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_salary"

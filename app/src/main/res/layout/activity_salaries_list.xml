@@ -15,7 +15,7 @@
         android:padding="@dimen/title_text_padding"
         android:text="@string/not_paid_salaries"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/title_text_size"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,17 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
         tools:listitem="@layout/list_item_salary_new" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_new_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:src="@drawable/ic_add_white_24dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_salaries"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -60,7 +49,7 @@
     <View
         android:id="@+id/divider2"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/divider_height_normal"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +62,7 @@
         android:layout_margin="@dimen/default_half_margin"
         android:text="@string/no_salaries_to_display"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="@dimen/screen_filler_text_size"
         android:textStyle="bold|italic"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
