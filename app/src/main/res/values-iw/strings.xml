@@ -20,11 +20,11 @@
 
     <!-- SALARY ACTIVITY -->
 
-    <string name="salary_information_title">פירוט משכורת</string>
-    <string name="work_information_title">פירוט עבודה</string>
+    <string name="salary_information_title">פרטי משכורת</string>
+    <string name="work_information_title">פרטי עבודה</string>
     <string name="update_salary_title">עדכון משכורת</string>
     <string name="new_salary_title">משכורת חדשה</string>
-    <string name="worker_name_hint">שכר עובד/ת</string>
+    <string name="worker_name_hint">שם עובד/ת</string>
     <string name="salary_hint">משכורת</string>
     <string name="work_date_hint">תאריך עבודה (אופציונלי)</string>
     <string name="payment_date_hint">תאריך תשלום</string>

@@ -44,6 +44,7 @@ public class SalaryActivity extends AppCompatActivity {
     private SalaryViewModel mViewModel;
     private boolean mIsConfirmed, mIsNewSalary;
     private SalaryEntry mSalaryEntry;
+    private AlertDialog mDeleteSalaryDialog;
 
     @BindView(R.id.cb_contract) CheckBox mHasContractCheckbox;
     @BindView(R.id.cb_pay) CheckBox mIsPaidCheckbox;
@@ -92,12 +93,12 @@ public class SalaryActivity extends AppCompatActivity {
             if (salaryId != SALARY_DEFAULT_ID) { // Set update salary configuration
                 setTitle(getString(R.string.update_salary_title));
                 mViewModel.getSalaryById(salaryId);
-                updateSwitches(View.VISIBLE);
-            } else { // Set new salary configuration
-                mIsNewSalary = true;
-                setTitle(getString(R.string.new_salary_title));
-                updateSwitches(View.GONE);
+                updateCheckBoxes(View.VISIBLE);
             }
+        } else { // Set new salary configuration
+            mIsNewSalary = true;
+            setTitle(getString(R.string.new_salary_title));
+            updateCheckBoxes(View.GONE);
         }
     }
 
@@ -158,12 +159,12 @@ public class SalaryActivity extends AppCompatActivity {
     }
 
     /**
-     * Set switches visibility
+     * Set checkboxes visibility
      * @param visible visibility's setup option
      */
-    private void updateSwitches(int visible) {
+    private void updateCheckBoxes(int visible) {
         mIsPaidCheckbox.setVisibility(visible);
-        mIsPaidCheckbox.setVisibility(visible);
+        mHasContractCheckbox.setVisibility(visible);
         mHasReceiptCheckbox.setVisibility(visible);
     }
 
@@ -251,27 +252,29 @@ public class SalaryActivity extends AppCompatActivity {
      * Show delete salary alert dialog
      */
     private void showAlertDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        // set title
-        alertDialogBuilder.setTitle(R.string.delete_salary_title);
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton(R.string.yes,new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        deleteSalary();
-                    }
-                })
-                .setNegativeButton(R.string.no,new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        dialog.cancel();
-                    }
-                });
+        if(mDeleteSalaryDialog == null) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            // set title
+            alertDialogBuilder.setTitle(R.string.delete_salary_title);
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            deleteSalary();
+                        }
+                    })
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, just close
+                            // the dialog box and do nothing
+                            dialog.cancel();
+                        }
+                    });
 
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+            mDeleteSalaryDialog = alertDialogBuilder.create();
+        }
+        mDeleteSalaryDialog.show();
     }
 
     /**

@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 import java.util.List;
 
 import roiattia.com.salariestrack.database.AppDatabase;
-import roiattia.com.salariestrack.database.AppExecutors;
+import roiattia.com.salariestrack.database.AppExecutor;
 import roiattia.com.salariestrack.model.SalariesSum;
 import roiattia.com.salariestrack.model.SalaryEntry;
 import roiattia.com.salariestrack.model.SalaryListItem;
@@ -20,11 +20,11 @@ public class SalariesRepository {
     private static final Object LOCK = new Object();
     private static SalariesRepository sInstance;
     private final AppDatabase mDb;
-    private final AppExecutors mExecutors;
+    private final AppExecutor mExecutor;
 
     private SalariesRepository(Context context){
         mDb = AppDatabase.getsInstance(context);
-        mExecutors = AppExecutors.getInstance();
+        mExecutor = AppExecutor.getInstance();
     }
 
     public synchronized static SalariesRepository getInstance(Context context) {
@@ -37,7 +37,7 @@ public class SalariesRepository {
     }
 
     public void deleteAllSalaries(){
-        mExecutors.diskIO().execute(new Runnable() {
+        mExecutor.diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 mDb.salaryDao().deleteAllSalaries();
@@ -46,7 +46,7 @@ public class SalariesRepository {
     }
 
     public void insertSalaries(final List<SalaryEntry> salaries) {
-        mExecutors.diskIO().execute(new Runnable() {
+        mExecutor.diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 int salariesCount = mDb.salaryDao().getSalariesCount();
@@ -63,7 +63,7 @@ public class SalariesRepository {
     }
 
     public void insertSalary(final SalaryEntry salaryEntry) {
-        mExecutors.diskIO().execute(new Runnable() {
+        mExecutor.diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 mDb.salaryDao().insertSalary(salaryEntry);
@@ -72,7 +72,7 @@ public class SalariesRepository {
     }
 
     public void debugPrint() {
-        mExecutors.diskIO().execute(new Runnable() {
+        mExecutor.diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 List<SalaryEntry> salaryEntries = mDb.salaryDao().getAllSalaries();
@@ -103,7 +103,7 @@ public class SalariesRepository {
     }
 
     public void deleteSalary(final SalaryEntry salaryEntry) {
-        mExecutors.diskIO().execute(new Runnable() {
+        mExecutor.diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 mDb.salaryDao().deleteSalary(salaryEntry);

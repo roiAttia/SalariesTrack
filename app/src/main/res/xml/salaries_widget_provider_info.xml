@@ -2,7 +2,7 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialKeyguardLayout="@layout/salaries_widget_provider"
     android:initialLayout="@layout/salaries_widget_provider"
-    android:minHeight="110dp"
+    android:minHeight="40dp"
     android:minWidth="180dp"
     android:previewImage="@drawable/widget_preview"
     android:resizeMode="horizontal|vertical"

@@ -8,20 +8,20 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import roiattia.com.salariestrack.repositories.SalariesRepository;
-import roiattia.com.salariestrack.database.AppExecutors;
+import roiattia.com.salariestrack.database.AppExecutor;
 import roiattia.com.salariestrack.model.SalaryEntry;
 import roiattia.com.salariestrack.model.SalaryListItem;
 
 class SalariesViewModel extends AndroidViewModel {
 
     private final SalariesRepository mRepository;
-    private final AppExecutors mExecutors;
+    private final AppExecutor mExecutors;
     private final MutableLiveData<List<SalaryListItem>> mMutableLiveDataSalaries;
 
     public SalariesViewModel(@NonNull Application application) {
         super(application);
         mRepository = SalariesRepository.getInstance(application.getApplicationContext());
-        mExecutors = AppExecutors.getInstance();
+        mExecutors = AppExecutor.getInstance();
         mMutableLiveDataSalaries = new MutableLiveData<>();
     }
 

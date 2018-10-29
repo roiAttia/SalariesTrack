@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    signingConfigs {
+        release {
+            storeFile file('SalariesTrack.jks')
+            storePassword "salariestrack"
+            keyAlias "st-alias"
+            keyPassword "salariest"
+        }
+    }
     defaultConfig {
         applicationId "roiattia.com.salariestrack"
         minSdkVersion 17
@@ -9,10 +17,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+//        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

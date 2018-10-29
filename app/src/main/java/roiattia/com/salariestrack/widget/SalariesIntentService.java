@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 
 import org.joda.time.LocalDate;
 
-import roiattia.com.salariestrack.database.AppExecutors;
+import roiattia.com.salariestrack.database.AppExecutor;
 import roiattia.com.salariestrack.model.SalariesSum;
 import roiattia.com.salariestrack.repositories.SalariesRepository;
 
@@ -17,14 +17,14 @@ public class SalariesIntentService extends IntentService {
 
     private static final String ACTION_GET_REPORT =
             "roiattia.com.salariestrack.action.get_report";
-    private final AppExecutors mExecutors;
+    private final AppExecutor mExecutors;
     private final SalariesRepository mRepository;
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      */
     public SalariesIntentService() {
         super("SalariesIntentService");
-        mExecutors = AppExecutors.getInstance();
+        mExecutors = AppExecutor.getInstance();
         mRepository = SalariesRepository.getInstance(this);
 
     }

@@ -19,7 +19,7 @@ public class SortDialog extends DialogFragment {
         void onDialogFinishClick(int whichSelected);
     }
 
-    public void setData(String[] optionsList){
+    public void setSortOptions(String[] optionsList){
         mOptionsList = optionsList;
     }
 

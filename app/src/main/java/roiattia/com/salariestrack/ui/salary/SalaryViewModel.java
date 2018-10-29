@@ -6,20 +6,20 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import roiattia.com.salariestrack.repositories.SalariesRepository;
-import roiattia.com.salariestrack.database.AppExecutors;
+import roiattia.com.salariestrack.database.AppExecutor;
 import roiattia.com.salariestrack.model.SalaryEntry;
 
 class SalaryViewModel extends AndroidViewModel {
 
     private final MutableLiveData<SalaryEntry> mMutableLiveDataSalary;
     private final SalariesRepository mRepository;
-    private final AppExecutors mExecutors;
+    private final AppExecutor mExecutors;
 
     public SalaryViewModel(@NonNull Application application) {
         super(application);
         mRepository = SalariesRepository.getInstance(application.getApplicationContext());
         mMutableLiveDataSalary = new MutableLiveData<>();
-        mExecutors = AppExecutors.getInstance();
+        mExecutors = AppExecutor.getInstance();
     }
 
     public void getSalaryById(final long salaryId) {

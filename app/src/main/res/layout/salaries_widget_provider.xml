@@ -16,9 +16,9 @@
 
         <TextView
             android:id="@+id/tv_salaries_track"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight=".3"
             android:background="@color/colorPrimary"
             android:padding="@dimen/widget_padding"
             android:text="@string/app_name"
@@ -26,12 +26,12 @@
 
         <ImageView
             android:id="@+id/iv_new_salary"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.7"
+            android:layout_weight=".7"
+            android:contentDescription="@string/widget_add_new_salary_image_view_button_content_description"
             android:padding="@dimen/widget_padding"
-            app:srcCompat="@drawable/ic_add_white_24dp"
-            android:contentDescription="@string/widget_add_new_salary_image_view_button_content_description" />
+            android:src="@drawable/ic_add_white_24dp" />
 
     </LinearLayout>
 
@@ -41,8 +41,9 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:padding="@dimen/widget_padding"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/default_text_size"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         tools:text="Salaries to pay: 2, of total: 700" />
 
 </LinearLayout>

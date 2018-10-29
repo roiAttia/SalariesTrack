@@ -57,14 +57,20 @@ public class SalariesListActivity extends AppCompatActivity
         setupViewHolder();
     }
 
+    /**
+     * Setup sort dialog with title and options
+     */
     private void setupSortDialog() {
         mSortOption = 0;
         mSortDialog = new SortDialog();
         final String[] sortOptions = getResources().getStringArray(R.array.sort_selection_options);
-        mSortDialog.setData(sortOptions);
+        mSortDialog.setSortOptions(sortOptions);
         mSortDialog.setTitle(getString(R.string.sort_selection_title));
     }
 
+    /**
+     * Setup Banner ad at the bottom of the activity
+     */
     private void setupAd() {
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111");
@@ -85,7 +91,7 @@ public class SalariesListActivity extends AppCompatActivity
     }
 
     /**
-     * Setup salaries list recycler view
+     * Setup salaries list's recycler view
      */
     private void setupRecyclerView() {
         mAdapter = new SalariesAdapter(this, this);
@@ -95,7 +101,8 @@ public class SalariesListActivity extends AppCompatActivity
     }
 
     /**
-     * Setup view holder and set it's observe method
+     * Setup view holder and set it's observe method for changes in the
+     * salaries list. if list has no items then show an empty list message instead
      */
     private void setupViewHolder() {
         mViewModel = ViewModelProviders.of(this).get(SalariesViewModel.class);
@@ -129,7 +136,7 @@ public class SalariesListActivity extends AppCompatActivity
             case R.id.mi_debug_print: // log all salaries in db
                 mViewModel.debugPrint();
                 break;
-            case R.id.mi_new_salary:
+            case R.id.mi_new_salary: // add new salary
                 Intent intent = new Intent(SalariesListActivity.this, SalaryActivity.class);
                 startActivity(intent);
                 break;

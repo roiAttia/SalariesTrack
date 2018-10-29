@@ -23,13 +23,17 @@ public class SalariesWidgetProvider extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.salaries_widget_provider);
+
+        // Set the sum of the salaries text
         views.setTextViewText(R.id.tv_summary, context.getString(R.string.title) +
                 TextFormat.getStringFormatFromDouble(salariesSum.getSum()));
 
+        // Set the app's name text and it's click event - navigate to SalariesListActivity
         Intent salariesListIntent = new Intent(context, SalariesListActivity.class);
         PendingIntent salariesPendingIntent = PendingIntent.getActivity(context, 0, salariesListIntent, 0);
         views.setOnClickPendingIntent(R.id.tv_salaries_track, salariesPendingIntent);
 
+        // Set the plus button - navigate to SalaryActivity
         Intent salaryIntent = new Intent(context, SalaryActivity.class);
         PendingIntent salaryPendingIntent = PendingIntent.getActivity(context, 0, salaryIntent, 0);
         views.setOnClickPendingIntent(R.id.iv_new_salary, salaryPendingIntent);
